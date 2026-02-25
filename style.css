@@ -50,7 +50,7 @@ body {
 /* ======= GANTI LINK FOTO UNTUK DESKTOP DI SINI ======= */
 @media (min-width: 768px) {
   .bg-image {
-    background-image: url("URL_FOTO_DESKTOP_DISINI.jpg");
+    background-image: url("/images/program-jumat-berkah.jpg");
   }
 }
 
