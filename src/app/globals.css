@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  --hijau: #4a9b5f;
+  --hijau-tua: #2d6e43;
+  --hijau-muda: #e8f5ee;
+  --emas: #c5973a;
+  --emas-muda: #fdf3e0;
+  --putih: #fdfaf5;
+  --teks: #1a2e22;
+  --teks-sekunder: #4a6358;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-jakarta), sans-serif;
+  background-color: var(--putih);
+  color: var(--teks);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-arab {
+  font-family: var(--font-amiri), serif;
+}
