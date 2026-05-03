@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palet Warna Kustom BIMAI */
+  --color-hijau: #4a9b5f;
+  --color-hijau-tua: #2d6e43;
+  --color-hijau-muda: #e8f5ee;
+  --color-emas: #c5973a;
+  --color-emas-muda: #fdf3e0;
+  --color-putih: #fdfaf5;
+  --color-teks: #1a2e22;
+  --color-teks-sekunder: #4a6358;
+
+  /* Font Kustom (nanti kita hubungkan di layout.tsx) */
+  --font-jakarta: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-arab: var(--font-amiri), serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-putih);
+  color: var(--color-teks);
+  font-family: var(--font-jakarta);
+}
