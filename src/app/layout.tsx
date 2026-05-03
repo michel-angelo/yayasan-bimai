@@ -6,6 +6,45 @@ import Footer from "@/components/Footer";
 import FloatingWA from "@/components/FloatingWA";
 
 <meta name="apple-mobile-web-app-title" content="BIMAI" />;
+export const metadata: Metadata = {
+  title: "BIMAI Peduli - Yayasan Bina Masyarakat Indonesia",
+  description:
+    "Bersama memberdayakan masyarakat melalui program sosial, pendidikan, dan kemanusiaan yang berkelanjutan.",
+  keywords: [
+    "yayasan bimai",
+    "bimai peduli",
+    "donasi online",
+    "sedekah subuh",
+    "wakaf quran",
+    "yayasan yatim",
+    "bina masyarakat indonesia",
+  ],
+  authors: [{ name: "Yayasan BIMAI" }],
+  openGraph: {
+    title: "BIMAI Peduli - Bergerak Bersama Memberdayakan Umat",
+    description:
+      "Satu langkah kecilmu hari ini bisa mengubah hidup banyak orang. Mari berdonasi dan wujudkan perubahan nyata bersama BIMAI Peduli.",
+    url: "https://bimaipeduli.id", // Ganti dengan domain Anda nanti jika sudah ada
+    siteName: "BIMAI Peduli",
+    images: [
+      {
+        url: "/logo.webp", // Idealnya nanti Anda buat gambar khusus ukuran 1200x630px
+        width: 800,
+        height: 600,
+        alt: "Logo BIMAI Peduli",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BIMAI Peduli - Yayasan Bina Masyarakat Indonesia",
+    description:
+      "Bersama memberdayakan masyarakat melalui program sosial, pendidikan, dan kemanusiaan yang berkelanjutan.",
+    images: ["/logo.webp"],
+  },
+};
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
