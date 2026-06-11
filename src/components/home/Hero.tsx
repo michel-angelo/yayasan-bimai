@@ -1,112 +1,75 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative bg-[var(--color-putih)] overflow-hidden">
-      {/* Background Ornamen (Hanya muncul di Desktop) */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-[var(--color-hijau-muda)]/40 rounded-bl-full -z-10 hidden md:block" />
+    <section className="relative bg-[#fdfaf5] pt-20 pb-32 overflow-hidden">
+      {/* Decorative Text background for uniqueness */}
+      <div className="absolute top-0 left-10 text-[15rem] font-serif text-black/[0.02] select-none pointer-events-none leading-none -translate-y-1/2">
+        BIMAI
+      </div>
 
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-24 md:pt-28 md:pb-32 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-        {/* Kolom Kiri: Teks & Call to Action */}
-        <div className="flex-1 flex flex-col items-start gap-6">
-          <div className="flex items-center gap-3">
-            <span className="w-8 h-0.5 bg-[var(--color-emas)]" />
-            <span className="text-[var(--color-emas)] font-bold text-xs tracking-widest uppercase">
-              Peduli • Amanah • Berdaya
+      <div className="max-w-6xl mx-auto px-6 relative flex flex-col md:flex-row items-center">
+        {/* Left Side: Content with more dynamic spacing */}
+        <div className="md:w-3/5 z-10 text-left mb-16 md:mb-0">
+          <div className="inline-block px-3 py-1 bg-emas/10 border border-emas/20 mb-8">
+            <span className="text-emas font-bold text-[10px] tracking-[0.3em] uppercase">
+              Sejak 2012 • Yayasan Bina Masyarakat Indonesia
             </span>
           </div>
 
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[var(--color-teks)] leading-tight">
-            Bersama, Kita Bisa <br />
-            <span className="text-[var(--color-hijau-tua)] italic">
-              Ubah Kehidupan
-            </span>
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-teks leading-[0.9] mb-8">
+            Nyalakan <br />
+            <span className="text-hijau-tua">Harapan,</span> <br />
+            Ubah Takdir.
           </h1>
 
-          <p className="text-[var(--color-teks-sekunder)] text-base md:text-lg leading-relaxed max-w-lg">
-            Yayasan Bina Masyarakat Indonesia (BIMAI) hadir untuk memberdayakan
-            umat melalui program sosial, pendidikan, dan kemanusiaan yang
-            berkelanjutan dan tepat sasaran.
+          <p className="text-teks-sekunder text-lg md:text-xl leading-relaxed max-w-md mb-10 border-l-2 border-hijau-tua pl-6">
+            Bukan sekadar bantuan, tapi pemberdayaan yang memutus rantai kemiskinan secara permanen dan bermartabat.
           </p>
 
-          {/* Tombol Aksi */}
-          <div className="flex flex-wrap gap-4 mt-2">
+          <div className="flex flex-col sm:flex-row gap-6">
             <a
               href="https://wa.me/6288902047766"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[var(--color-hijau-tua)] text-white px-8 py-3.5 rounded font-bold text-sm tracking-wide hover:bg-opacity-90 transition-all shadow-lg shadow-[var(--color-hijau-tua)]/20"
+              className="group relative inline-flex items-center justify-center px-10 py-4 bg-hijau-tua text-white font-bold tracking-widest uppercase text-xs overflow-hidden"
             >
-              Donasi Sekarang
+              <span className="relative z-10">Donasi Sekarang</span>
+              <div className="absolute inset-0 bg-emas translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </a>
             <Link
               href="/program"
-              className="bg-white text-[var(--color-hijau-tua)] border border-[var(--color-hijau-tua)] px-8 py-3.5 rounded font-bold text-sm tracking-wide hover:bg-[var(--color-hijau-muda)] transition-all"
+              className="inline-flex items-center text-xs font-bold tracking-widest uppercase text-teks hover:text-hijau-tua transition-colors"
             >
-              Lihat Program
+              Eksplorasi Program <span className="ml-3 text-lg">→</span>
             </Link>
-          </div>
-
-          {/* Baris Statistik */}
-          <div className="flex items-center gap-6 md:gap-8 mt-8 pt-8 border-t border-gray-200 w-full">
-            <div>
-              <p className="font-serif text-3xl text-[var(--color-hijau-tua)] font-bold">
-                12+
-              </p>
-              <p className="text-[10px] text-[var(--color-teks-sekunder)] uppercase tracking-wider mt-1 font-semibold">
-                Tahun Berdiri
-              </p>
-            </div>
-            <div className="w-px h-10 bg-gray-200" />
-            <div>
-              <p className="font-serif text-3xl text-[var(--color-hijau-tua)] font-bold">
-                5Rb+
-              </p>
-              <p className="text-[10px] text-[var(--color-teks-sekunder)] uppercase tracking-wider mt-1 font-semibold">
-                Penerima Manfaat
-              </p>
-            </div>
-            <div className="w-px h-10 bg-gray-200" />
-            <div>
-              <p className="font-serif text-3xl text-[var(--color-hijau-tua)] font-bold">
-                20+
-              </p>
-              <p className="text-[10px] text-[var(--color-teks-sekunder)] uppercase tracking-wider mt-1 font-semibold">
-                Program Aktif
-              </p>
-            </div>
           </div>
         </div>
 
-        {/* Kolom Kanan: Visual / Gambar */}
-        <div className="flex-1 w-full relative mt-10 md:mt-0">
-          <div className="aspect-[4/3] md:aspect-square bg-[var(--color-hijau-tua)] rounded-2xl overflow-hidden relative shadow-2xl flex flex-col items-center justify-center group">
-            {/* Tempat Placeholder Foto. Jika Anda sudah punya foto, ganti ini dengan <Image src="..." /> dari Next.js */}
-            <svg
-              className="w-16 h-16 text-white/40 mb-4 group-hover:scale-110 transition-transform duration-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+        {/* Right Side: Overlapping Image Layout (Less "Template") */}
+        <div className="md:w-2/5 relative flex justify-center md:justify-end">
+          <div className="relative w-72 h-96 bg-gray-200 border border-black/5 z-20 overflow-hidden shadow-2xl rotate-2 translate-x-4">
+             <Image 
+                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop" 
+                alt="Children in need" 
+                fill 
+                className="object-cover"
+                priority
               />
-            </svg>
-            <span className="font-serif italic tracking-wider text-white/60 text-sm">
-              [ Ruang Visual Foto Kegiatan ]
-            </span>
           </div>
-
-          {/* Elemen Melayang (Floating Card) */}
-          <div className="absolute -bottom-6 -left-4 md:-left-10 bg-white p-5 rounded-xl shadow-xl border border-gray-100 max-w-[220px]">
-            <p className="text-[10px] font-bold text-[var(--color-emas)] uppercase tracking-wider mb-1.5">
-              Bantuan Mendesak
-            </p>
-            <p className="font-serif text-[var(--color-teks)] font-bold text-base leading-snug">
-              Beasiswa Santri Berprestasi 2026
+          <div className="absolute top-12 -left-12 w-64 h-80 bg-hijau-tua/10 border border-hijau-tua/20 z-10 overflow-hidden -rotate-3">
+             <Image 
+                src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1931&auto=format&fit=crop" 
+                alt="Community work" 
+                fill 
+                className="object-cover opacity-80"
+              />
+          </div>
+          
+          {/* Subtle Stats box in a non-standard position */}
+          <div className="absolute -bottom-10 -right-4 bg-white p-6 border border-gray-100 z-30 min-w-[200px]">
+            <p className="text-4xl font-serif font-bold text-hijau-tua">5Rb+</p>
+            <p className="text-[10px] uppercase tracking-widest text-teks-sekunder font-bold mt-1">
+              Jiwa Telah Terbantu
             </p>
           </div>
         </div>
