@@ -1,6 +1,5 @@
-// src/app/tentang/page.tsx
-
 import { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Tentang Kami - BIMAI Peduli",
@@ -15,94 +14,94 @@ const misiList = [
   "Menyediakan fasilitas kesehatan dan air bersih di daerah pelosok yang membutuhkan.",
 ];
 
-const statistik = [
-  { angka: "12+", label: "Tahun Berbakti" },
-  { angka: "5.000+", label: "Penerima Manfaat" },
-  { angka: "1.200+", label: "Donatur Aktif" },
-  { angka: "20+", label: "Program Berjalan" },
-];
-
 export default function TentangPage() {
   return (
-    <div className="bg-[var(--color-putih)] min-h-screen">
-      {/* Header Halaman */}
-      <section className="bg-[var(--color-hijau-tua)] pt-20 pb-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-bold tracking-widest text-[var(--color-emas)] uppercase mb-4">
-            Tentang Kami
-          </p>
-          <h1 className="font-serif text-4xl md:text-5xl text-white font-bold mb-6 leading-tight">
-            Membangun Peradaban,
-            <br className="hidden md:block" /> Memberdayakan Umat
-          </h1>
-          <p className="text-white/80 text-base md:text-lg leading-relaxed">
-            Yayasan Bina Masyarakat Indonesia (BIMAI) adalah lembaga filantropi
-            Islam yang berdedikasi untuk mengangkat harkat dan martabat kaum
-            dhuafa melalui pendekatan pendidikan, sosial, dan ekonomi yang
-            komprehensif.
-          </p>
+    <div className="bg-[#fdfaf5] min-h-screen">
+      {/* Editorial Hero Header */}
+      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
+        <div className="absolute top-0 right-0 text-[20rem] font-serif text-black/[0.02] select-none pointer-events-none leading-none translate-x-1/4 -translate-y-1/4">
+          VISI
         </div>
-      </section>
-
-      {/* Section Angka Dampak (Statistik) */}
-      <section className="max-w-6xl mx-auto px-6 -mt-8 relative z-10">
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-          {statistik.map((stat, idx) => (
-            <div
-              key={idx}
-              className={`flex flex-col items-center justify-center text-center ${idx === 0 || idx === 1 ? "pt-0" : "pt-8 md:pt-0"} md:pt-0`}
-            >
-              <p className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-emas)] mb-2">
-                {stat.angka}
-              </p>
-              <p className="text-xs md:text-sm font-bold tracking-wider text-[var(--color-teks-sekunder)] uppercase">
-                {stat.label}
-              </p>
+        
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+          <div className="md:w-1/2">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="h-px w-12 bg-emas" />
+              <p className="text-xs font-bold tracking-[0.4em] text-emas uppercase">Profil Yayasan</p>
             </div>
-          ))}
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-teks font-bold leading-[0.85] mb-10">
+              Membangun <br /> <span className="text-hijau-tua">Martabat,</span> <br /> Memberdaya.
+            </h1>
+            <p className="text-teks-sekunder text-lg md:text-xl leading-relaxed max-w-lg border-l-2 border-hijau-tua pl-8">
+              Lahir dari kepedulian mendalam terhadap ketimpangan sosial, BIMAI hadir bukan hanya untuk memberi ikan, tapi mengajarkan cara memancing di kolam kehidupan.
+            </p>
+          </div>
+          
+          <div className="md:w-1/2 relative">
+             <div className="relative aspect-[4/5] w-full max-w-md mx-auto grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden shadow-2xl">
+                <Image 
+                  src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop" 
+                  alt="Foundation focus" 
+                  fill 
+                  className="object-cover"
+                />
+             </div>
+             <div className="absolute -bottom-10 -left-10 w-48 h-48 border border-emas hidden md:block" />
+          </div>
         </div>
       </section>
 
-      {/* Visi & Misi */}
-      <section className="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-        {/* Visi */}
-        <div className="bg-[var(--color-emas-muda)] p-10 md:p-14 rounded-3xl border border-[var(--color-emas)]/20 relative">
-          <div className="absolute top-0 right-0 p-8 opacity-10">
-            <svg
-              className="w-24 h-24 text-[var(--color-emas)]"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-            </svg>
+      {/* Narrative Statistics */}
+      <section className="bg-white py-32 border-y border-gray-100">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-24">
+            <div className="flex flex-col gap-4">
+               <p className="font-serif text-6xl text-emas font-bold">12+</p>
+               <div className="h-px w-full bg-gray-100" />
+               <p className="text-[10px] font-bold tracking-widest text-teks uppercase">Tahun Dedikasi Tanpa Henti</p>
+            </div>
+            <div className="flex flex-col gap-4 md:translate-y-12">
+               <p className="font-serif text-6xl text-hijau-tua font-bold">5Rb+</p>
+               <div className="h-px w-full bg-gray-100" />
+               <p className="text-[10px] font-bold tracking-widest text-teks uppercase">Jiwa yang Kembali Tersenyum</p>
+            </div>
+            <div className="flex flex-col gap-4">
+               <p className="font-serif text-6xl text-emas font-bold">1.2K</p>
+               <div className="h-px w-full bg-gray-100" />
+               <p className="text-[10px] font-bold tracking-widest text-teks uppercase">Donatur yang Menaruh Percaya</p>
+            </div>
+            <div className="flex flex-col gap-4 md:translate-y-12">
+               <p className="font-serif text-6xl text-hijau-tua font-bold">20+</p>
+               <div className="h-px w-full bg-gray-100" />
+               <p className="text-[10px] font-bold tracking-widest text-teks uppercase">Program Sosial Aktif</p>
+            </div>
           </div>
-          <h2 className="font-serif text-3xl text-[var(--color-teks)] font-bold mb-6 relative z-10">
-            Visi Kami
-          </h2>
-          <p className="text-[var(--color-hijau-tua)] font-serif text-xl md:text-2xl leading-relaxed italic relative z-10">
-            "Menjadi lembaga filantropi terdepan yang profesional, transparan,
-            dan berdampak luas dalam mewujudkan masyarakat Indonesia yang
-            mandiri, sejahtera, dan berakhlak mulia."
-          </p>
         </div>
+      </section>
 
-        {/* Misi */}
-        <div>
-          <h2 className="font-serif text-3xl text-[var(--color-teks)] font-bold mb-8">
-            Misi Kami
-          </h2>
-          <ul className="flex flex-col gap-6">
-            {misiList.map((misi, index) => (
-              <li key={index} className="flex gap-4 items-start">
-                <div className="w-8 h-8 rounded-full bg-[var(--color-hijau-muda)] flex items-center justify-center text-[var(--color-hijau-tua)] font-bold flex-shrink-0 mt-1">
-                  {index + 1}
-                </div>
-                <p className="text-[var(--color-teks-sekunder)] leading-relaxed text-base">
-                  {misi}
-                </p>
-              </li>
-            ))}
-          </ul>
+      {/* Visi & Misi Redesign */}
+      <section className="py-32 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-24">
+           <div className="md:w-1/2">
+              <h2 className="font-serif text-4xl text-teks font-bold mb-12">Filosofi <br /> Pergerakan</h2>
+              <div className="bg-emas/5 p-12 border-l-4 border-emas">
+                 <p className="font-serif text-2xl text-teks italic leading-relaxed">
+                   "Menjadi lembaga filantropi terdepan yang profesional, transparan, dan berdampak luas dalam mewujudkan masyarakat Indonesia yang mandiri."
+                 </p>
+              </div>
+           </div>
+           
+           <div className="md:w-1/2">
+              <h2 className="font-serif text-4xl text-teks font-bold mb-12">Misi Utama</h2>
+              <div className="flex flex-col gap-10">
+                {misiList.map((misi, idx) => (
+                  <div key={idx} className="group flex gap-8">
+                    <span className="font-serif text-3xl text-emas opacity-30 group-hover:opacity-100 transition-opacity">0{idx + 1}</span>
+                    <p className="text-lg text-teks-sekunder border-b border-gray-100 pb-4 flex-1">{misi}</p>
+                  </div>
+                ))}
+              </div>
+           </div>
         </div>
       </section>
     </div>
