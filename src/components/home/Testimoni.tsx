@@ -1,71 +1,61 @@
-// src/components/home/Testimoni.tsx
+import Image from "next/image";
 
 const testimoni = [
   {
     nama: "Budi Santoso",
     peran: "Donatur Tetap",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop",
     pesan:
-      "Saya sudah berdonasi ke BIMAI selama 2 tahun. Laporan penggunaan dananya selalu transparan dan tepat sasaran. Insya Allah berkah.",
+      "Laporan penggunaan dana yang selalu transparan membuat saya tidak ragu untuk terus menitipkan amanah di sini.",
   },
   {
     nama: "Siti Rahmawati",
     peran: "Penerima Beasiswa",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop",
     pesan:
-      "Berkat beasiswa dari BIMAI, saya bisa melanjutkan pendidikan. Terima kasih sudah percaya pada mimpi anak yatim seperti saya.",
-  },
-  {
-    nama: "Ahmad Fauzi",
-    peran: "Donatur",
-    pesan:
-      "Prosesnya mudah, timnya responsif, dan yang paling penting amanah. Tidak ragu untuk terus berdonasi di sini.",
+      "Bukan hanya biaya sekolah, BIMAI memberikan pendampingan yang membuat saya berani bermimpi lebih tinggi.",
   },
 ];
 
 export default function Testimoni() {
   return (
-    <section className="bg-[var(--color-hijau-muda)] px-6 py-24">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-14 text-center md:text-left">
-          <p className="text-sm font-bold text-[var(--color-emas)] uppercase tracking-widest mb-3">
-            Testimoni
-          </p>
-          <h2 className="text-3xl md:text-4xl font-serif text-[var(--color-teks)] font-bold">
-            Kata Mereka
+    <section className="bg-[#fdfaf5] px-6 py-32 overflow-hidden border-t border-gray-100">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-20 items-center">
+        {/* Header - Vertical Text Style */}
+        <div className="md:w-1/4">
+          <h2 className="font-serif text-5xl md:text-7xl text-teks font-bold leading-none -rotate-90 origin-left translate-x-12 hidden md:block opacity-10">
+            SUARA MEREKA
           </h2>
-          <p className="text-[var(--color-teks-sekunder)] mt-4 max-w-lg mx-auto md:mx-0 text-base">
-            Kepercayaan donatur dan senyum penerima manfaat adalah motivasi
-            terbesar kami.
-          </p>
+          <div className="md:hidden mb-12">
+            <p className="text-xs font-bold text-emas uppercase tracking-[0.4em] mb-4">Testimoni</p>
+            <h2 className="text-4xl font-serif text-teks font-bold">Kata Mereka</h2>
+          </div>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-          {testimoni.map((item) => (
+        {/* Storytelling Cards */}
+        <div className="md:w-3/4 flex flex-col gap-24">
+          {testimoni.map((item, idx) => (
             <div
               key={item.nama}
-              className="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow group"
+              className={`flex flex-col md:flex-row gap-10 items-center ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             >
-              {/* Kutipan & Teks */}
-              <p className="text-[var(--color-emas)] text-5xl font-serif leading-none h-6 group-hover:-translate-y-1 transition-transform">
-                "
-              </p>
-              <p className="text-sm text-[var(--color-teks-sekunder)] leading-relaxed flex-1 mt-4">
-                {item.pesan}
-              </p>
-
-              {/* Profil */}
-              <div className="flex items-center gap-4 mt-8 pt-6 border-t border-gray-100">
-                <div className="w-12 h-12 rounded-full bg-[var(--color-emas-muda)] flex items-center justify-center text-[var(--color-emas)] font-bold text-lg">
-                  {item.nama.charAt(0)}
+              {/* Portrait with unique shape */}
+              <div className="relative w-48 h-64 flex-shrink-0">
+                <div className="absolute inset-0 border border-emas translate-x-4 translate-y-4" />
+                <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden">
+                  <Image src={item.image} alt={item.nama} fill className="object-cover" />
                 </div>
+              </div>
+
+              {/* Text Body */}
+              <div className={`max-w-md ${idx % 2 !== 0 ? 'md:text-right' : 'md:text-left'}`}>
+                <p className="text-[var(--color-emas)] text-6xl font-serif leading-none mb-6">“</p>
+                <p className="text-xl md:text-2xl text-teks italic leading-relaxed mb-8">
+                  {item.pesan}
+                </p>
                 <div>
-                  <p className="text-sm font-bold text-[var(--color-teks)]">
-                    {item.nama}
-                  </p>
-                  <p className="text-xs text-[var(--color-emas)] uppercase tracking-wider mt-1 font-semibold">
-                    {item.peran}
-                  </p>
+                  <p className="text-sm font-bold text-teks uppercase tracking-widest">{item.nama}</p>
+                  <p className="text-[10px] text-emas font-bold uppercase tracking-[0.3em] mt-2">{item.peran}</p>
                 </div>
               </div>
             </div>
