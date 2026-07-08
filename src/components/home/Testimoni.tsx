@@ -4,14 +4,14 @@ const testimoni = [
   {
     nama: "Budi Santoso",
     peran: "Donatur Tetap",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop",
+    image: "/images/activity-program.webp",
     pesan:
       "Laporan penggunaan dana yang selalu transparan membuat saya tidak ragu untuk terus menitipkan amanah di sini.",
   },
   {
     nama: "Siti Rahmawati",
     peran: "Penerima Beasiswa",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop",
+    image: "/images/doa-bersama.webp",
     pesan:
       "Bukan hanya biaya sekolah, BIMAI memberikan pendampingan yang membuat saya berani bermimpi lebih tinggi.",
   },
@@ -42,7 +42,7 @@ export default function Testimoni() {
               {/* Portrait with unique shape */}
               <div className="relative w-48 h-64 flex-shrink-0">
                 <div className="absolute inset-0 border border-emas translate-x-4 translate-y-4" />
-                <div className="relative w-full h-full grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden">
+                <div className="relative w-full h-full overflow-hidden">
                   <Image src={item.image} alt={item.nama} fill className="object-cover" />
                 </div>
               </div>
