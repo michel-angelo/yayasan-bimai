@@ -12,51 +12,51 @@ export const metadata: Metadata = {
 const galeriData = [
   {
     id: 1,
-    judul: "Penyaluran Wakaf Qur'an di Pelosok NTT",
+    judul: "Penyaluran Wakaf Qur'an & Iqro",
     kategori: "Pendidikan",
     tanggal: "12 Mei 2026",
-    image: "https://images.unsplash.com/photo-1584281723351-9d90e2251d30?q=80&w=2070&auto=format&fit=crop",
-    size: "tall"
-  },
-  {
-    id: 2,
-    judul: "Distribusi Sedekah Pangan Jumat",
-    kategori: "Sosial",
-    tanggal: "08 Mei 2026",
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/distribusi-wakaf-qur'an.webp",
     size: "wide"
   },
   {
+    id: 2,
+    judul: "Sedekah Pangan Jalanan untuk Lansia",
+    kategori: "Sosial",
+    tanggal: "08 Mei 2026",
+    image: "/images/jumber.webp",
+    size: "tall"
+  },
+  {
     id: 3,
-    judul: "Peresmian Sumur Bor Desa Sukamaju",
+    judul: "Doa Bersama Santri & Anak Yatim",
     kategori: "Kemanusiaan",
     tanggal: "20 April 2026",
-    image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1931&auto=format&fit=crop",
-    size: "normal"
+    image: "/images/doa-bersama.webp",
+    size: "tall"
   },
   {
     id: 4,
-    judul: "Penyerahan Beasiswa Santri",
+    judul: "Penyerahan Beasiswa & Alat Belajar",
     kategori: "Pendidikan",
     tanggal: "15 April 2026",
-    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop",
+    image: "/images/santunan.webp",
     size: "normal"
   },
   {
     id: 5,
-    judul: "Bantuan Logistik Korban Banjir",
-    kategori: "Tanggap Bencana",
+    judul: "Santunan & Buka Puasa Bersama",
+    kategori: "Sosial",
     tanggal: "02 April 2026",
-    image: "https://images.unsplash.com/photo-1469571483332-945781198f82?q=80&w=2070&auto=format&fit=crop",
-    size: "tall"
+    image: "/images/bukber.webp",
+    size: "wide"
   },
   {
     id: 6,
-    judul: "Pelatihan UMKM Bunda Yatim",
-    kategori: "Ekonomi",
+    judul: "Pembagian Paket Buku & Krayon",
+    kategori: "Pendidikan",
     tanggal: "25 Maret 2026",
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop",
-    size: "wide"
+    image: "/images/santunan2.webp",
+    size: "normal"
   },
 ];
 
@@ -87,7 +87,7 @@ export default function GaleriPage() {
               key={item.id}
               className="relative group overflow-hidden bg-white border border-gray-100 shadow-sm"
             >
-              <div className="relative w-full grayscale hover:grayscale-0 transition-all duration-700">
+              <div className="relative w-full">
                 <Image 
                   src={item.image} 
                   alt={item.judul} 
