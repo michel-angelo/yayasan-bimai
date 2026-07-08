@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "BIMAI Peduli - Yayasan Bina Masyarakat Indonesia",
   description:
     "Bersama memberdayakan masyarakat melalui program sosial, pendidikan, dan kemanusiaan yang berkelanjutan.",
+  icons: {
+    icon: "/logo.webp",
+  },
   keywords: [
     "yayasan bimai",
     "bimai peduli",
@@ -71,9 +74,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="scroll-smooth">
+    <html lang="id" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${jakarta.variable} ${playfair.variable} ${amiri.variable} font-sans bg-[var(--color-putih)] text-[var(--color-teks)] antialiased min-h-screen flex flex-col`}
+        suppressHydrationWarning
       >
         <Navbar />
         <main className="flex-1">{children}</main>
