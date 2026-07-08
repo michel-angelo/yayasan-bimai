@@ -38,10 +38,10 @@ export default function TentangPage() {
           </div>
           
           <div className="md:w-1/2 relative">
-             <div className="relative aspect-[4/5] w-full max-w-md mx-auto grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden shadow-2xl">
+             <div className="relative aspect-[4/5] w-full max-w-md mx-auto overflow-hidden shadow-2xl">
                 <Image 
-                  src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop" 
-                  alt="Foundation focus" 
+                  src="/images/program-rumah-belajar.jpg" 
+                  alt="Kelas belajar Yayasan BIMAI" 
                   fill 
                   className="object-cover"
                 />
