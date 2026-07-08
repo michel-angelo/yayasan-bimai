@@ -49,8 +49,8 @@ export default function Hero() {
         <div className="md:w-2/5 relative flex justify-center md:justify-end">
           <div className="relative w-72 h-96 bg-gray-200 border border-black/5 z-20 overflow-hidden shadow-2xl rotate-2 translate-x-4">
              <Image 
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop" 
-                alt="Children in need" 
+                src="/images/impact-photo.jpg" 
+                alt="Anak binaan memeluk Al-Qur'an" 
                 fill 
                 className="object-cover"
                 priority
@@ -58,8 +58,8 @@ export default function Hero() {
           </div>
           <div className="absolute top-12 -left-12 w-64 h-80 bg-hijau-tua/10 border border-hijau-tua/20 z-10 overflow-hidden -rotate-3">
              <Image 
-                src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1931&auto=format&fit=crop" 
-                alt="Community work" 
+                src="/images/doa-bersama.webp" 
+                alt="Doa bersama anak yatim binaan" 
                 fill 
                 className="object-cover opacity-80"
               />
