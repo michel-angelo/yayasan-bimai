@@ -5,7 +5,7 @@ const programs = [
   {
     id: "wakaf-quran",
     nama: "Wakaf Qur'an",
-    image: "https://images.unsplash.com/photo-1584281723351-9d90e2251d30?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/activity-program.webp",
     deskripsi:
       "Menyalurkan mushaf Al-Qur'an baru ke pelosok desa, madrasah, dan pondok pesantren yang kekurangan fasilitas belajar.",
     targetDana: 25000000,
@@ -15,7 +15,7 @@ const programs = [
   {
     id: "wakaf-quran-braille",
     nama: "Wakaf Qur'an Braille",
-    image: "https://images.unsplash.com/photo-1544640808-32ca72ac7f67?q=80&w=1935&auto=format&fit=crop",
+    image: "/images/dampak.webp",
     deskripsi:
       "Memfasilitasi saudara-saudara kita penyandang tunanetra dengan Al-Qur'an Braille khusus agar mereka tetap bisa membaca.",
     targetDana: 30000000,
@@ -25,7 +25,7 @@ const programs = [
   {
     id: "sedekah-subuh",
     nama: "Sedekah Subuh",
-    image: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb8?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/jumber.webp",
     deskripsi:
       "Mengawali hari dengan kebaikan. Membantu biaya pengobatan dhuafa, beasiswa yatim, dan kebutuhan mendesak.",
     targetDana: 50000000,
@@ -72,7 +72,7 @@ export default function ProgramUnggulan() {
               >
                 {/* Image Container with offset border */}
                 <div className="relative mb-8">
-                  <div className="aspect-[3/4] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+                  <div className="relative aspect-[3/4] overflow-hidden">
                     <Image 
                       src={program.image} 
                       alt={program.nama} 

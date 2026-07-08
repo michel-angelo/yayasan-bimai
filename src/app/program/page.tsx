@@ -11,7 +11,7 @@ const allPrograms = [
   {
     id: "wakaf-quran",
     nama: "Wakaf Qur'an",
-    image: "https://images.unsplash.com/photo-1584281723351-9d90e2251d30?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/distribusi-wakaf-qur'an.webp",
     deskripsi:
       "Menyalurkan mushaf Al-Qur'an baru dan layak baca ke pelosok desa, madrasah, dan pondok pesantren yang kekurangan fasilitas belajar.",
     targetDana: 25000000,
@@ -21,7 +21,7 @@ const allPrograms = [
   {
     id: "wakaf-quran-braille",
     nama: "Wakaf Qur'an Braille",
-    image: "https://images.unsplash.com/photo-1544640808-32ca72ac7f67?q=80&w=1935&auto=format&fit=crop",
+    image: "/images/tunanetra.webp",
     deskripsi:
       "Memfasilitasi saudara-saudara kita penyandang tunanetra dengan Al-Qur'an Braille khusus agar mereka tetap bisa membaca dan menghafal kalam Ilahi.",
     targetDana: 30000000,
@@ -31,7 +31,7 @@ const allPrograms = [
   {
     id: "sedekah-subuh",
     nama: "Sedekah Subuh",
-    image: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb8?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/og-cover.jpg",
     deskripsi:
       "Mengawali hari dengan kebaikan. Dana sedekah subuh disalurkan untuk membantu biaya pengobatan dhuafa, beasiswa yatim, dan kebutuhan mendesak.",
     targetDana: 50000000,
@@ -41,7 +41,7 @@ const allPrograms = [
   {
     id: "jumat-berkah",
     nama: "Jum'at Berkah",
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/jum'at-berkah.webp",
     deskripsi:
       "Distribusi paket sembako dan makanan bergizi siap santap setiap hari Jumat untuk keluarga prasejahtera, yatim, dan pekerja harian lepas.",
     targetDana: 15000000,
@@ -82,7 +82,7 @@ export default function ProgramPage() {
               >
                 {/* Image Section with stylized border */}
                 <div className="md:w-1/2 relative group">
-                  <div className="relative aspect-[4/3] w-full grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden shadow-xl">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden shadow-xl">
                     <Image src={program.image} alt={program.nama} fill className="object-cover group-hover:scale-105 transition-transform duration-1000" />
                   </div>
                   <div className={`absolute top-0 ${idx % 2 !== 0 ? '-right-6' : '-left-6'} h-full w-px bg-emas/30 hidden md:block`} />
