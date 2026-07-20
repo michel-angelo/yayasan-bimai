@@ -8,23 +8,19 @@ export const supabase = (supabaseUrl && supabaseKey)
   : null;
 
 export interface DonationRecord {
-  id?: string;
-  order_id: string;
-  program_type: string; // e.g. 'wakaf-quran-braille', 'sedekah-subuh', 'operasional', 'umum'
-  program_name: string;
+  id?: number;
+  merchant_order_id: string;
+  jenis_donasi: string; // e.g. 'wakaf-quran-braille', 'sedekah-subuh', 'operasional', 'sedekah-umum'
   donor_name: string;
   phone?: string | null;
-  email?: string | null;
   amount: number;
   payment_method: string;
   wakif_name?: string | null;
-  doa?: string | null;
-  payment_status: "PENDING" | "SUCCESS" | "FAILED" | "EXPIRED";
-  reference_id?: string | null;
-  qr_string?: string | null;
-  va_number?: string | null;
+  niat?: string | null;
+  status_payment: "pending" | "success" | "failed";
+  payment_code?: string | null;
+  payment_reference?: string | null;
   created_at?: string;
-  updated_at?: string;
 }
 
 export async function saveDonationToSupabase(record: DonationRecord) {
@@ -42,13 +38,13 @@ export async function saveDonationToSupabase(record: DonationRecord) {
   }
 }
 
-export async function updateDonationStatusInSupabase(orderId: string, status: "SUCCESS" | "FAILED" | "EXPIRED") {
+export async function updateDonationStatusInSupabase(merchantOrderId: string, status: "success" | "failed") {
   if (!supabase) return null;
   try {
     const { data, error } = await supabase
       .from("donations")
-      .update({ payment_status: status, updated_at: new Date().toISOString() })
-      .eq("order_id", orderId)
+      .update({ status_payment: status })
+      .eq("merchant_order_id", merchantOrderId)
       .select();
     if (error) {
       console.warn("Supabase status update warning:", error.message);

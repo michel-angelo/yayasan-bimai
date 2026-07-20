@@ -24,10 +24,10 @@ export async function POST(req: Request) {
 
     if (resultCode === "00") {
       console.log(`Callback Duitku SUKSES: Order ${merchantOrderId} sebesar Rp ${amount}`);
-      await updateDonationStatusInSupabase(merchantOrderId, "SUCCESS");
+      await updateDonationStatusInSupabase(merchantOrderId, "success");
     } else {
       console.log(`Callback Duitku GAGAL: Order ${merchantOrderId} dengan resultCode ${resultCode}`);
-      await updateDonationStatusInSupabase(merchantOrderId, "FAILED");
+      await updateDonationStatusInSupabase(merchantOrderId, "failed");
     }
 
     // Duitku mengharapkan status 200 OK

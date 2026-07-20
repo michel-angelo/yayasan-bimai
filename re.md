@@ -35,64 +35,48 @@ Setelah kami cek, terdapat beberapa persyaratan yang belum lengkap dan perlu dit
 
 ---
 
-## 🚀 Panduan Setup Database Supabase (Donasi Terintegrasi)
+## 🚀 Panduan Setup Database Supabase (`donations` Table)
 
-Untuk menyimpan seluruh riwayat donasi dari semua program (Wakaf Braille, Sedekah Subuh, Operasional, Umum, dll), ikuti langkah setup Supabase berikut:
+Karena Anda **sudah memiliki tabel `donations` di Supabase**, Anda hanya perlu menambahkan 1 kolom baru bernama **`jenis_donasi`** agar dapat membedakan seluruh program donasi (Wakaf Braille, Sedekah Subuh, Operasional, Umum, dll).
 
-### Langkah 1: Buat Tabel `donations` di Supabase SQL Editor
+### Langkah 1: Jalankan Perintah SQL Tambah Kolom di Supabase SQL Editor
 
-Buka dashboard Supabase Anda (**SQL Editor**) dan jalankan perintah SQL berikut:
+Buka dashboard Supabase Anda (**SQL Editor**) dan jalankan perintah SQL singkat berikut:
 
 ```sql
--- 1. Buat Tabel Donations Bersama untuk Seluruh Program Yayasan BIMAI
-CREATE TABLE public.donations (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    order_id VARCHAR(100) UNIQUE NOT NULL,
-    program_type VARCHAR(100) NOT NULL DEFAULT 'sedekah-umum', -- 'wakaf-quran-braille', 'sedekah-subuh', 'operasional', 'umum'
-    program_name VARCHAR(255) NOT NULL,
-    donor_name VARCHAR(150) NOT NULL DEFAULT 'Hamba Allah',
-    phone VARCHAR(50),
-    email VARCHAR(150),
-    amount NUMERIC(12, 2) NOT NULL,
-    payment_method VARCHAR(50) NOT NULL,
-    wakif_name VARCHAR(150),
-    doa TEXT,
-    payment_status VARCHAR(50) NOT NULL DEFAULT 'PENDING', -- 'PENDING', 'SUCCESS', 'FAILED', 'EXPIRED'
-    reference_id VARCHAR(100),
-    qr_string TEXT,
-    va_number VARCHAR(100),
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+-- Tambahkan kolom jenis_donasi pada tabel donations yang sudah ada
+ALTER TABLE public.donations 
+ADD COLUMN IF NOT EXISTS jenis_donasi TEXT DEFAULT 'wakaf-quran-braille';
 
--- 2. Tambahkan Indeks untuk Akses Cepat Statistik & Query status
-CREATE INDEX idx_donations_order_id ON public.donations(order_id);
-CREATE INDEX idx_donations_program_type ON public.donations(program_type);
-CREATE INDEX idx_donations_payment_status ON public.donations(payment_status);
-
--- 3. Aktifkan Row Level Security (RLS)
-ALTER TABLE public.donations ENABLE ROW LEVEL SECURITY;
-
--- 4. Policy Akses Publik untuk Mengambil Statistik Donasi Lunas (SUCCESS)
-CREATE POLICY "Public can read successful donations" 
-ON public.donations FOR SELECT 
-USING (payment_status = 'SUCCESS');
-
--- 5. Policy Akses Backend API (Insert & Update Status)
-CREATE POLICY "Enable insert for backend" 
-ON public.donations FOR INSERT 
-WITH CHECK (true);
-
-CREATE POLICY "Enable update for backend" 
-ON public.donations FOR UPDATE 
-USING (true);
+-- Tambahkan indeks untuk query statistik real-time per program
+CREATE INDEX IF NOT EXISTS idx_donations_jenis_donasi ON public.donations(jenis_donasi);
 ```
 
 ---
 
-### Langkah 2: Tambahkan Variabel Supabase ke `.env.local`
+### Struktur Tabel `donations` di Supabase yang Telah Disesuaikan:
 
-Buka berkas `.env.local` pada project `yayasan-bimai` dan tambahkan kredensial Supabase Anda:
+| Nama Kolom | Tipe Data | Keterangan |
+| :--- | :--- | :--- |
+| `id` | `bigint` / `int8` | Primary Key Auto Increment |
+| **`jenis_donasi`** 🆕 | `text` | **Jenis Program**: `'wakaf-quran-braille'`, `'sedekah-subuh'`, `'operasional'`, `'umum'` |
+| `merchant_order_id` | `text` | Kode unik order transaksi Duitku (`BIMAI-xxx`) |
+| `donor_name` | `text` | Nama donatur / "Hamba Allah" |
+| `phone` | `text` | Nomor telepon / WhatsApp donatur |
+| `amount` | `numeric` | Nominal donasi dalam Rupiah |
+| `wakif_name` | `text` | Nama wakif (opsional) |
+| `niat` | `text` | Niat / doa kebaikan (opsional) |
+| `payment_method` | `text` | Kode pembayaran Duitku (`SP`, `BC`, `M2`, `I1`, `BR`, `BV`, `DA`) |
+| `status_payment` | `text` | Status transaksi (`'pending'`, `'success'`, `'failed'`) |
+| `payment_code` | `text` | Nomor VA atau String QRIS dari Duitku |
+| `payment_reference` | `text` | Reference number dari Duitku Sandbox |
+| `created_at` | `timestamptz` | Waktu transaksi dibuat |
+
+---
+
+### Langkah 2: Tambahkan Kredensial Supabase ke `.env.local`
+
+Buka berkas `.env.local` pada project `yayasan-bimai` dan tambahkan URL & API Key Supabase Anda:
 
 ```env
 # Supabase Configuration
@@ -103,16 +87,22 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
 
 ---
 
-### 🔄 Cara Kerja Integrasi Supabase & Duitku:
+### 🔄 Cara Kerja Integrasi Supabase & Duitku di Backend:
 
-1. **Saat Donatur Mengisi Form Checkout (`/donasi`)**:
-   - Backend (`/api/donations/inquiry`) menyimpan record baru ke tabel `donations` di Supabase dengan status `payment_status = 'PENDING'` dan `program_type` sesuai program yang dipilih (contoh: `'wakaf-quran-braille'`).
+1. **Saat Donatur Membuat Transaksi Checkout (`/donasi`)**:
+   - Backend `/api/donations/inquiry` menyimpan record baru ke tabel `donations` di Supabase dengan `status_payment = 'pending'` dan `jenis_donasi` diisi sesuai program yang dipilih (contoh: `'wakaf-quran-braille'`).
 2. **Saat Pembayaran Duitku Diselesaikan Donatur**:
    - Duitku menembak callback ke `/api/donations/callback`.
-   - Backend memverifikasi MD5 signature dan memperbarui `payment_status = 'SUCCESS'` secara real-time di Supabase.
-3. **Statistik Real-Time Landing Page**:
-   - Landing page mana pun dapat meng-query total donasi lunas khusus program tersebut menggunakan filter:
-     `supabase.from('donations').select('amount').eq('program_type', 'wakaf-quran-braille').eq('payment_status', 'SUCCESS')`.
+   - Backend memverifikasi MD5 signature dan otomatis meng-update `status_payment = 'success'` di Supabase.
+3. **Fetching Statistik Real-Time**:
+   - Landing page mana pun dapat menampilkan total donasi lunas per program menggunakan query:
+     ```javascript
+     const { data } = await supabase
+       .from('donations')
+       .select('amount')
+       .eq('jenis_donasi', 'wakaf-quran-braille')
+       .eq('status_payment', 'success');
+     ```
 
 ---
 
