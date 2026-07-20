@@ -129,7 +129,7 @@ export default function WakafBraillePage() {
 
                 <div className="flex justify-between text-xs text-white/70 pt-1">
                   <span>66.2% Tercapai</span>
-                  <span>462 Mushaf Terdiskon &amp; Tersalurkan</span>
+                  <span>462 Mushaf Terdiskon & Tersalurkan</span>
                 </div>
               </div>
 
@@ -184,7 +184,7 @@ export default function WakafBraillePage() {
               Realita Lapangan
             </span>
             <h2 className="font-serif text-3xl font-bold text-gray-900 leading-tight">
-              Mengapa Al-Qur&apos;an Braille Masih Sangat Langka &amp; Mahal?
+              Mengapa Al-Qur&apos;an Braille Masih Sangat Langka & Mahal?
             </h2>
           </div>
 

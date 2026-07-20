@@ -52,7 +52,7 @@ export default function TataCaraPembayaranPage() {
                 Yayasan Bina Masyarakat Indonesia
               </h2>
               <p className="text-xs text-gray-600 font-medium">
-                Penyelenggara Program Sosial, Pendidikan, &amp; Wakaf Al-Qur&apos;an Braille
+                Penyelenggara Program Sosial, Pendidikan, & Wakaf Al-Qur&apos;an Braille
               </p>
               <p className="text-xs text-gray-500">
                 Alamat: Jalan Villa Pamulang Blok CF 1 No. 5, RT 011/RW 017, Pamulang, Tangerang Selatan | Website: bimaipeduli.id
@@ -60,16 +60,16 @@ export default function TataCaraPembayaranPage() {
             </div>
             <div className="text-right">
               <span className="text-xs font-mono font-bold text-gray-500 uppercase block">Lampiran Verifikasi</span>
-              <span className="text-sm font-bold text-[var(--color-hijau-tua)]">Duitku Merchant Onboarding</span>
+              <span className="text-sm font-bold text-[var(--color-hijau-tua)]">Dokumen SOP Transaksi</span>
             </div>
           </div>
 
           <div className="space-y-2">
             <h3 className="font-serif text-xl font-bold text-gray-900">
-              SOP &amp; Alur Tata Cara Pembayaran Donasi Online
+              SOP & Alur Tata Cara Pembayaran Donasi Online
             </h3>
             <p className="text-xs text-gray-600 leading-relaxed">
-              Dokumen ini memuat langkah-langkah resmi proses penggalangan dana dan pembayaran donasi pada portal resmi Yayasan Bina Masyarakat Indonesia (<span className="font-semibold text-gray-900">bimaipeduli.id</span>) yang terintegrasi dengan Payment Gateway Duitku.
+              Dokumen ini memuat langkah-langkah resmi proses penggalangan dana dan pembayaran donasi pada portal resmi Yayasan Bina Masyarakat Indonesia (<span className="font-semibold text-gray-900">bimaipeduli.id</span>) yang terintegrasi dengan Payment Gateway Resmi.
             </p>
           </div>
 
@@ -82,7 +82,7 @@ export default function TataCaraPembayaranPage() {
                   1
                 </span>
                 <h4 className="font-serif font-bold text-base text-gray-900">
-                  Pemilihan Program &amp; Nominal Donasi (Tahap 1)
+                  Pemilihan Program & Nominal Donasi (Tahap 1)
                 </h4>
               </div>
               <p className="text-xs text-gray-600 leading-relaxed pl-11">
@@ -97,7 +97,7 @@ export default function TataCaraPembayaranPage() {
                   2
                 </span>
                 <h4 className="font-serif font-bold text-base text-gray-900">
-                  Pengisian Data Diri &amp; Niat Wakif (Tahap 2)
+                  Pengisian Data Diri & Niat Wakif (Tahap 2)
                 </h4>
               </div>
               <p className="text-xs text-gray-600 leading-relaxed pl-11">
@@ -112,11 +112,11 @@ export default function TataCaraPembayaranPage() {
                   3
                 </span>
                 <h4 className="font-serif font-bold text-base text-gray-900">
-                  Pemilihan Kanal Pembayaran Duitku Payment Gateway (Tahap 3)
+                  Pemilihan Kanal Pembayaran Otomatis (Tahap 3)
                 </h4>
               </div>
               <p className="text-xs text-gray-600 leading-relaxed pl-11">
-                Donatur memilih kanal pembayaran resmi yang disediakan oleh Duitku, meliputi:
+                Donatur memilih kanal pembayaran resmi yang disediakan, meliputi:
               </p>
               <ul className="list-disc list-inside text-xs text-gray-600 pl-14 space-y-1">
                 <li><span className="font-semibold">QRIS</span> (BCA, Gopay, OVO, ShopeePay, DANA, LinkAja)</li>
@@ -132,11 +132,11 @@ export default function TataCaraPembayaranPage() {
                   4
                 </span>
                 <h4 className="font-serif font-bold text-base text-gray-900">
-                  Proses Eksekusi Transaksi &amp; Notifikasi Callback
+                  Proses Eksekusi Transaksi & Notifikasi Callback
                 </h4>
               </div>
               <p className="text-xs text-gray-600 leading-relaxed pl-11">
-                Saat tombol <span className="font-bold text-gray-900">&quot;Bayar Sekarang via Duitku&quot;</span> ditekan, sistem backend memanggil API Inquiry Duitku untuk menghasilkan tagihan resmi Duitku. Donatur melakukan penyelesaian pembayaran. Setelah pembayaran lunas, Duitku mengirimkan notifikasi HTTP POST Callback ke backend website untuk memperbarui status transaksi menjadi Sukses dan mengarahkan donatur ke halaman konfirmasi <span className="font-mono bg-white px-2 py-0.5 border rounded">/donasi/sukses</span>.
+                Saat tombol <span className="font-bold text-gray-900">&quot;Bayar Sekarang&quot;</span> ditekan, sistem backend memanggil API Inquiry untuk menghasilkan tagihan resmi. Donatur melakukan penyelesaian pembayaran. Setelah pembayaran lunas, sistem mengirimkan notifikasi HTTP POST Callback ke backend website untuk memperbarui status transaksi menjadi Sukses dan mengarahkan donatur ke halaman konfirmasi <span className="font-mono bg-white px-2 py-0.5 border rounded">/donasi/sukses</span>.
               </p>
             </div>
           </div>
