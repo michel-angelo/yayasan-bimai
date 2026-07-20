@@ -34,7 +34,7 @@ function DonasiFormContent() {
   const [wakifName, setWakifName] = useState("");
   const [doa, setDoa] = useState("");
 
-  const [paymentMethod, setPaymentMethod] = useState("DQ"); // DQ = QRIS, BC = BCA VA, M2 = Mandiri VA, I1 = BNI VA, BR = BRI VA, DA = DANA
+  const [paymentMethod, setPaymentMethod] = useState("SP"); // SP = QRIS, BC = BCA VA, M2 = Mandiri VA, I1 = BNI VA, BR = BRI VA, BV = BSI VA, DA = DANA
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -328,11 +328,12 @@ function DonasiFormContent() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
-                { id: "DQ", name: "QRIS", desc: "Gopay, OVO, ShopeePay, DANA, LinkAja & BCA", badge: "Instan" },
+                { id: "SP", name: "QRIS", desc: "Gopay, OVO, ShopeePay, DANA, LinkAja & BCA", badge: "Instan" },
                 { id: "BC", name: "BCA Virtual Account", desc: "Verifikasi Otomatis 24 Jam", badge: "VA BCA" },
                 { id: "M2", name: "Mandiri Virtual Account", desc: "Verifikasi Otomatis 24 Jam", badge: "VA Mandiri" },
                 { id: "I1", name: "BNI Virtual Account", desc: "Verifikasi Otomatis 24 Jam", badge: "VA BNI" },
                 { id: "BR", name: "BRI Virtual Account", desc: "Verifikasi Otomatis 24 Jam", badge: "VA BRI" },
+                { id: "BV", name: "BSI Virtual Account", desc: "Verifikasi Otomatis 24 Jam", badge: "VA BSI" },
                 { id: "DA", name: "DANA E-Wallet", desc: "Pembayaran Langsung via DANA", badge: "E-Wallet" },
               ].map((m) => (
                 <div
