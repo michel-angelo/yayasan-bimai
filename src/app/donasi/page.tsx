@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import CustomAlert, { AlertType } from "@/components/CustomAlert";
 
 const availablePrograms = [
   { id: "umum", nama: "Sedekah Umum / Infaq Operasional" },
@@ -37,6 +38,20 @@ function DonasiFormContent() {
   const [paymentMethod, setPaymentMethod] = useState("SP"); // SP = QRIS, BC = BCA VA, M2 = Mandiri VA, I1 = BNI VA, BR = BRI VA, BV = BSI VA, DA = DANA
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [alertConfig, setAlertConfig] = useState<{
+    isOpen: boolean;
+    message: string;
+    type: AlertType;
+  }>({
+    isOpen: false,
+    message: "",
+    type: "info",
+  });
+
+  const showAlert = (message: string, type: AlertType = "info") => {
+    setAlertConfig({ isOpen: true, message, type });
+  };
 
   useEffect(() => {
     if (programParam && availablePrograms.some((p) => p.id === programParam)) {
@@ -76,6 +91,7 @@ function DonasiFormContent() {
   const handleProcessPayment = async () => {
     if (!amount || amount < 10000) {
       setErrorMessage("Nominal donasi minimal adalah Rp 10.000");
+      showAlert("Nominal donasi minimal adalah Rp 10.000", "warning");
       return;
     }
 
@@ -110,13 +126,18 @@ function DonasiFormContent() {
         });
         setStep(4);
         setIsSubmitting(false);
+        showAlert("Instruksi pembayaran berhasil diterbitkan!", "success");
       } else {
-        setErrorMessage(data.message || "Gagal memproses transaksi. Silakan coba lagi.");
+        const msg = data.message || "Gagal memproses transaksi. Silakan coba lagi.";
+        setErrorMessage(msg);
+        showAlert(msg, "error");
         setIsSubmitting(false);
       }
     } catch (err) {
       console.error("Error submitting donation:", err);
-      setErrorMessage("Koneksi gagal. Silakan periksa jaringan internet Anda.");
+      const msg = "Koneksi gagal. Silakan periksa jaringan internet Anda.";
+      setErrorMessage(msg);
+      showAlert(msg, "error");
       setIsSubmitting(false);
     }
   };
@@ -434,7 +455,7 @@ function DonasiFormContent() {
                   type="button"
                   onClick={() => {
                     navigator.clipboard.writeText(paymentResult.vaNumber || "");
-                    alert("Nomor Virtual Account tersalin!");
+                    showAlert("Nomor Virtual Account berhasil tersalin!", "success");
                   }}
                   className="bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
                 >
@@ -501,6 +522,14 @@ function DonasiFormContent() {
           </div>
         </div>
       )}
+
+      {/* Floating Custom Toast Alert */}
+      <CustomAlert
+        isOpen={alertConfig.isOpen}
+        message={alertConfig.message}
+        type={alertConfig.type}
+        onClose={() => setAlertConfig((prev) => ({ ...prev, isOpen: false }))}
+      />
     </div>
   );
 }
