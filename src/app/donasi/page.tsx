@@ -6,11 +6,11 @@ import Link from "next/link";
 import CustomAlert, { AlertType } from "@/components/CustomAlert";
 
 const availablePrograms = [
-  { id: "umum", nama: "Sedekah Umum / Infaq Operasional" },
-  { id: "wakaf-quran-braille", nama: "Wakaf Al-Qur'an Braille" },
-  { id: "wakaf-quran", nama: "Wakaf Al-Qur'an Standar" },
-  { id: "sedekah-subuh", nama: "Sedekah Subuh Berkah" },
-  { id: "jumat-berkah", nama: "Jum'at Berkah Makanan Yatim" },
+  { id: "wakaf-quran-braille", nama: "Wakaf Al-Qur'an Braille", desc: "Fasilitasi mushaf Al-Qur'an Braille untuk sahabat tunanetra mengaji & hafal Al-Qur'an.", badge: "Utama", icon: "📖" },
+  { id: "umum", nama: "Sedekah Umum / Operasional", desc: "Dukungan operasional & keberlangsungan dakwah serta bantuan dhuafa.", badge: "Rutin", icon: "💚" },
+  { id: "wakaf-quran", nama: "Wakaf Al-Qur'an Standar", desc: "Penyaluran mushaf Al-Qur'an ke TPQ & masjid di pelosok negeri.", badge: "Syiar", icon: "📚" },
+  { id: "sedekah-subuh", nama: "Sedekah Subuh Berkah", desc: "Amalan pembuka pintu rezeki & ketenangan jiwa di waktu subuh.", badge: "Subuh", icon: "🌅" },
+  { id: "jumat-berkah", nama: "Jum'at Berkah Makanan Yatim", desc: "Santunan & paket makanan sehat bergizi untuk santri & anak yatim.", badge: "Berbagi", icon: "🍲" },
 ];
 
 const nominalPresets = [50000, 100000, 250000, 375000, 500000, 1500000];
@@ -155,25 +155,30 @@ function DonasiFormContent() {
       </div>
 
       {/* Step Indicators */}
-      <div className="flex items-center justify-between mb-10">
+      <div className="flex items-center justify-between mb-8">
         {[
-          { num: 1, label: "Program & Nominal" },
+          { num: 1, label: "Program" },
           { num: 2, label: "Data Donatur" },
-          { num: 3, label: "Metode Pembayaran" },
+          { num: 3, label: "Pembayaran" },
         ].map((s) => (
           <div key={s.num} className="flex items-center flex-1 last:flex-initial">
-            <div
-              className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                step >= s.num
-                  ? "bg-[var(--color-hijau-tua)] text-white shadow-md scale-105"
-                  : "bg-gray-100 text-gray-400"
-              }`}
-            >
-              {s.num}
+            <div className="flex flex-col items-center gap-1">
+              <div
+                className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                  step >= s.num
+                    ? "bg-[var(--color-hijau-tua)] text-white shadow-md scale-105"
+                    : "bg-gray-100 text-gray-400"
+                }`}
+              >
+                {s.num}
+              </div>
+              <span className={`text-[10px] sm:text-xs font-bold ${step >= s.num ? "text-[var(--color-hijau-tua)]" : "text-gray-400"}`}>
+                {s.label}
+              </span>
             </div>
             {s.num < 3 && (
               <div
-                className={`h-0.5 flex-1 mx-3 transition-colors ${
+                className={`h-0.5 flex-1 mx-2 sm:mx-4 mb-4 transition-colors ${
                   step > s.num ? "bg-[var(--color-hijau-tua)]" : "bg-gray-100"
                 }`}
               />
@@ -190,19 +195,32 @@ function DonasiFormContent() {
             <p className="text-xs text-gray-500">Tentukan program penyaluran infak / wakaf Anda.</p>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">Pilihan Program</label>
-            <select
-              value={selectedProgram}
-              onChange={(e) => setSelectedProgram(e.target.value)}
-              className="w-full bg-[#fdfaf5] border border-gray-200 px-4 py-3.5 rounded-xl text-sm text-gray-900 font-bold focus:border-[var(--color-emas)] focus:outline-none"
-            >
+          <div className="space-y-3">
+            <label className="text-xs font-bold text-gray-700 uppercase tracking-wider block">Pilihan Program Kebaikan</label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {availablePrograms.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.nama}
-                </option>
+                <div
+                  key={p.id}
+                  onClick={() => setSelectedProgram(p.id)}
+                  className={`p-4 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between space-y-2 ${
+                    selectedProgram === p.id
+                      ? "border-[var(--color-emas)] bg-amber-50/70 ring-2 ring-[var(--color-emas)]/40 shadow-sm"
+                      : "border-gray-200 bg-white hover:border-gray-300"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{p.icon}</span>
+                      <span className="font-bold text-xs md:text-sm text-gray-900 leading-snug">{p.nama}</span>
+                    </div>
+                    <span className="text-[9px] font-extrabold uppercase px-2 py-0.5 bg-amber-100 text-amber-900 rounded shrink-0">
+                      {p.badge}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-gray-500 leading-normal">{p.desc}</p>
+                </div>
               ))}
-            </select>
+            </div>
           </div>
 
           <div className="space-y-3">
