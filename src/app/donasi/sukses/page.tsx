@@ -83,11 +83,11 @@ function SuksesContent() {
       </div>
 
       {/* Rincian Transaksi */}
-      <div className="bg-[#fdfaf5] p-6 rounded-2xl border border-amber-200/60 text-left space-y-3 text-xs">
-        <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+      <div className="bg-[#fdfaf5] p-6 rounded-2xl border border-amber-200/60 text-left space-y-3 text-xs max-w-full overflow-hidden">
+        <div className="flex flex-wrap justify-between items-center gap-2 pb-2 border-b border-gray-200">
           <span className="text-gray-500 font-semibold">Order ID Transaksi</span>
-          <div className="flex items-center gap-2">
-            <span className="font-mono font-bold text-gray-900">{orderId}</span>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="font-mono font-bold text-gray-900 break-all">{orderId}</span>
             <button
               type="button"
               onClick={handleCopyOrderId}
@@ -98,15 +98,15 @@ function SuksesContent() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+        <div className="flex flex-wrap justify-between items-center gap-2 pb-2 border-b border-gray-200">
           <span className="text-gray-500 font-semibold">Nama Donatur</span>
-          <span className="font-bold text-gray-900">{donorName}</span>
+          <span className="font-bold text-gray-900 break-words text-right">{donorName}</span>
         </div>
 
         {wakifName && wakifName !== "-" && (
-          <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+          <div className="flex flex-wrap justify-between items-center gap-2 pb-2 border-b border-gray-200">
             <span className="text-gray-500 font-semibold">Atas Nama Wakif</span>
-            <span className="font-bold text-gray-900">{wakifName}</span>
+            <span className="font-bold text-gray-900 break-words text-right">{wakifName}</span>
           </div>
         )}
 

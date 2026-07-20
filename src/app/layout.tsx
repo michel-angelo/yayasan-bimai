@@ -5,36 +5,57 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWA from "@/components/FloatingWA";
 
-<meta name="apple-mobile-web-app-title" content="BIMAI" />;
 export const metadata: Metadata = {
-  title: "BIMAI Peduli - Yayasan Bina Masyarakat Indonesia",
-  description:
-    "Bersama memberdayakan masyarakat melalui program sosial, pendidikan, dan kemanusiaan yang berkelanjutan.",
-  icons: {
-    icon: "/logo.webp",
+  metadataBase: new URL("https://bimaipeduli.id"),
+  title: {
+    default: "BIMAI Peduli - Yayasan Bina Masyarakat Indonesia",
+    template: "%s | BIMAI Peduli",
   },
+  description:
+    "Portal Resmi Wakaf & Donasi Yayasan Bina Masyarakat Indonesia. Bersama memberdayakan masyarakat melalui program sosial, pendidikan, wakaf Al-Qur'an Braille, dan kemanusiaan berkelanjutan.",
   keywords: [
     "yayasan bimai",
     "bimai peduli",
+    "wakaf quran braille",
     "donasi online",
     "sedekah subuh",
-    "wakaf quran",
+    "wakaf alquran",
     "yayasan yatim",
     "bina masyarakat indonesia",
+    "pamulang tangerang selatan",
   ],
-  authors: [{ name: "Yayasan BIMAI" }],
+  authors: [{ name: "Yayasan Bina Masyarakat Indonesia" }],
+  creator: "Yayasan BIMAI",
+  publisher: "Yayasan BIMAI",
+  alternates: {
+    canonical: "https://bimaipeduli.id",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/logo.webp",
+    apple: "/logo.webp",
+  },
   openGraph: {
     title: "BIMAI Peduli - Bergerak Bersama Memberdayakan Umat",
     description:
-      "Satu langkah kecilmu hari ini bisa mengubah hidup banyak orang. Mari berdonasi dan wujudkan perubahan nyata bersama BIMAI Peduli.",
-    url: "https://bimaipeduli.id", // Ganti dengan domain Anda nanti jika sudah ada
+      "Satu langkah kecilmu hari ini bisa mengubah hidup banyak orang. Mari berdonasi dan berwakaf Al-Qur'an Braille bersama BIMAI Peduli.",
+    url: "https://bimaipeduli.id",
     siteName: "BIMAI Peduli",
     images: [
       {
-        url: "/logo.webp", // Idealnya nanti Anda buat gambar khusus ukuran 1200x630px
+        url: "/logo.webp",
         width: 800,
         height: 600,
-        alt: "Logo BIMAI Peduli",
+        alt: "Logo Resmi BIMAI Peduli",
       },
     ],
     locale: "id_ID",
@@ -44,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BIMAI Peduli - Yayasan Bina Masyarakat Indonesia",
     description:
-      "Bersama memberdayakan masyarakat melalui program sosial, pendidikan, dan kemanusiaan yang berkelanjutan.",
+      "Bersama memberdayakan masyarakat melalui program sosial, pendidikan, wakaf Al-Qur'an Braille, dan kemanusiaan.",
     images: ["/logo.webp"],
   },
 };
@@ -76,12 +97,12 @@ export default function RootLayout({
   return (
     <html lang="id" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${jakarta.variable} ${playfair.variable} ${amiri.variable} font-sans bg-[var(--color-putih)] text-[var(--color-teks)] antialiased min-h-screen flex flex-col`}
+        className={`${jakarta.variable} ${playfair.variable} ${amiri.variable} font-sans bg-[var(--color-putih)] text-[var(--color-teks)] antialiased min-h-screen flex flex-col overflow-x-hidden`}
         suppressHydrationWarning
       >
         <Navbar />
-        <main className="flex-1">{children}</main>
-        <FloatingWA /> {/* <-- Pasang di sini, di atas Footer */}
+        <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+        <FloatingWA />
         <Footer />
       </body>
     </html>
