@@ -104,6 +104,38 @@ export default function TentangPage() {
            </div>
         </div>
       </section>
+
+      {/* Section Legalitas & Kredibilitas */}
+      <section className="py-24 px-6 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-4 mb-8 justify-center">
+            <span className="h-px w-12 bg-emas" />
+            <h2 className="font-serif text-3xl text-teks font-bold text-center">Legalitas Resmi</h2>
+            <span className="h-px w-12 bg-emas" />
+          </div>
+          <p className="text-center text-teks-sekunder max-w-xl mx-auto mb-16 leading-relaxed">
+            Sebagai wujud kepatuhan terhadap regulasi pemerintah Indonesia dan menjaga kepercayaan publik, berikut adalah nomor legalitas resmi Yayasan Bina Masyarakat Indonesia.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="bg-[#fdfaf5] p-8 border border-emas/10 text-center rounded-xl shadow-sm">
+              <div className="text-emas text-4xl mb-4">⚖️</div>
+              <h3 className="font-bold text-lg text-teks mb-2">SK Menkumham</h3>
+              <p className="text-sm text-teks-sekunder mb-6 leading-relaxed">Terdaftar resmi di Kementerian Hukum dan Hak Asasi Manusia Republik Indonesia</p>
+              <div className="inline-block font-mono text-xs bg-emas/10 text-emas px-4 py-2 rounded-full font-bold">
+                AHU-0010921.AH.01.04.Tahun 2017
+              </div>
+            </div>
+            <div className="bg-[#fdfaf5] p-8 border border-emas/10 text-center rounded-xl shadow-sm">
+              <div className="text-emas text-4xl mb-4">📋</div>
+              <h3 className="font-bold text-lg text-teks mb-2">SK Kesbangpol</h3>
+              <p className="text-sm text-teks-sekunder mb-6 leading-relaxed">Terdaftar resmi di Badan Kesatuan Bangsa dan Politik (Kesbangpol)</p>
+              <div className="inline-block font-mono text-xs bg-emas/10 text-emas px-4 py-2 rounded-full font-bold">
+                220/845 - Kesbangpol / 2019
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

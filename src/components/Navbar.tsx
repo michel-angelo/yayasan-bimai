@@ -9,7 +9,10 @@ const navLinks = [
   { label: "Beranda", href: "/" },
   { label: "Tentang", href: "/tentang" },
   { label: "Program", href: "/program" },
+  { label: "Wakaf Braille", href: "/wakaf-quran-braille" },
   { label: "Galeri", href: "/galeri" },
+  { label: "Transparansi", href: "/transparansi" },
+  { label: "Kontak", href: "/kontak" },
 ];
 
 export default function Navbar() {
@@ -60,14 +63,12 @@ export default function Navbar() {
 
         {/* CTA Desktop */}
         <div className="hidden md:block">
-          <a
-            href="https://wa.me/6288902047766"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-hijau-tua text-white text-sm font-bold tracking-wide uppercase px-6 py-2.5 rounded hover:bg-opacity-90 transition-all"
+          <Link
+            href="/donasi"
+            className="bg-hijau-tua text-white text-sm font-bold tracking-wide uppercase px-6 py-2.5 rounded hover:bg-opacity-90 transition-all inline-block"
           >
             Donasi
-          </a>
+          </Link>
         </div>
 
         {/* Hamburger Mobile */}
@@ -110,14 +111,13 @@ export default function Navbar() {
               </Link>
             );
           })}
-          <a
-            href="https://wa.me/6288902047766"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-hijau-tua text-white text-center text-sm font-bold uppercase px-4 py-3 rounded mt-2"
+          <Link
+            href="/donasi"
+            onClick={() => setMenuOpen(false)}
+            className="bg-hijau-tua text-white text-center text-sm font-bold uppercase px-4 py-3 rounded mt-2 block"
           >
             Donasi Sekarang
-          </a>
+          </Link>
         </div>
       </div>
     </header>

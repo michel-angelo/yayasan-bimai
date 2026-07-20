@@ -96,21 +96,37 @@ export default function ProgramUnggulan() {
                   </p>
 
                   <div className="space-y-4">
-                    <div className="h-px w-full bg-gray-100">
-                      <div className="h-px bg-emas transition-all duration-1000" style={{ width: `${persen}%` }} />
+                    <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                      <div
+                        className="bg-[var(--color-emas)] h-full rounded-full transition-all duration-1000"
+                        style={{ width: `${persen}%` }}
+                      />
                     </div>
-                    <div className="flex justify-between items-center text-[10px] font-bold tracking-widest uppercase">
-                      <span className="text-teks-sekunder">Terkumpul</span>
-                      <span className="text-hijau-tua">Rp {program.danaTerkumpul.toLocaleString("id-ID")}</span>
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex justify-between text-[10px] font-bold tracking-widest uppercase text-teks-sekunder">
+                        <span>Terkumpul</span>
+                        <span>Target Dana</span>
+                      </div>
+                      <div className="flex justify-between items-baseline font-semibold">
+                        <span className="text-base text-[var(--color-hijau-tua)]">
+                          Rp {program.danaTerkumpul.toLocaleString("id-ID")}
+                        </span>
+                        <span className="text-xs text-[var(--color-teks)]">
+                          Rp {program.targetDana.toLocaleString("id-ID")}
+                        </span>
+                      </div>
+                      <div className="text-[10px] font-bold text-[var(--color-emas)] tracking-widest uppercase text-right mt-0.5">
+                        {persen}% Tercapai
+                      </div>
                     </div>
                   </div>
 
-                  <a
-                    href={`https://wa.me/6288902047766?text=Bismillah,%20saya%20ingin%20berdonasi%20untuk%20program%20${encodeURIComponent(program.nama)}`}
-                    className="mt-10 inline-flex items-center justify-center border border-teks py-4 text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-teks hover:text-white transition-all"
+                  <Link
+                    href={`/donasi?program=${program.id}`}
+                    className="mt-8 inline-flex items-center justify-center border border-teks py-4 text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-teks hover:text-white transition-all text-center"
                   >
                     Donasi Sekarang
-                  </a>
+                  </Link>
                 </div>
               </div>
             );

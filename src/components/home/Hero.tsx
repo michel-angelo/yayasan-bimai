@@ -29,13 +29,13 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6">
-            <a
-              href="https://wa.me/6288902047766"
+            <Link
+              href="/donasi"
               className="group relative inline-flex items-center justify-center px-10 py-4 bg-hijau-tua text-white font-bold tracking-widest uppercase text-xs overflow-hidden"
             >
               <span className="relative z-10">Donasi Sekarang</span>
               <div className="absolute inset-0 bg-emas translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </a>
+            </Link>
             <Link
               href="/program"
               className="inline-flex items-center text-xs font-bold tracking-widest uppercase text-teks hover:text-hijau-tua transition-colors"

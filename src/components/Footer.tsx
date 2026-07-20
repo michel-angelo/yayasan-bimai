@@ -5,7 +5,11 @@ const navLinks = [
   { label: "Beranda", href: "/" },
   { label: "Tentang", href: "/tentang" },
   { label: "Program", href: "/program" },
+  { label: "Wakaf Braille", href: "/wakaf-quran-braille" },
   { label: "Galeri", href: "/galeri" },
+  { label: "Transparansi", href: "/transparansi" },
+  { label: "Panduan Bayar", href: "/tata-cara-pembayaran" },
+  { label: "Kontak", href: "/kontak" },
 ];
 
 export default function Footer() {
@@ -44,6 +48,11 @@ export default function Footer() {
               peradaban yang lebih baik.
             </p>
 
+            <div className="flex flex-col gap-1 text-[11px] text-white/50 font-mono">
+              <p>SK MENKUMHAM: AHU-0010921.AH.01.04.Tahun 2017</p>
+              <p>SK KESBANGPOL: 220/845 - Kesbangpol / 2019</p>
+            </div>
+
             <div className="mt-2 pl-4 border-l-2 border-[var(--color-emas)]/50">
               <p
                 dir="rtl"
@@ -79,26 +88,32 @@ export default function Footer() {
               Kontak & Lokasi
             </p>
             <div className="flex flex-col gap-3 text-sm text-white/80 leading-relaxed">
-              <p>Depok, Jawa Barat, Indonesia</p>
+              <p>
+                Jalan Villa Pamulang Blok CF 1 No. 5, RT 011/RW 017, Pondok Benda, Pamulang, Tangerang Selatan, 15416
+              </p>
               <p>Senin - Jumat, 08.00 - 17.00 WIB</p>
-              <a
-                href="https://wa.me/6288902047766"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--color-emas)] hover:text-white transition-colors font-medium mt-1"
-              >
-                +62 889-0204-7766
-              </a>
+              <div className="flex flex-col gap-1 mt-1">
+                <a
+                  href="tel:0217201234"
+                  className="text-[var(--color-emas)] hover:text-white transition-colors font-medium"
+                >
+                  Tlp: (021) 720-1234
+                </a>
+                <a
+                  href="mailto:info@bimaipeduli.id"
+                  className="text-[var(--color-emas)] hover:text-white transition-colors font-medium"
+                >
+                  Email: info@bimaipeduli.id
+                </a>
+              </div>
             </div>
 
-            <a
-              href="https://wa.me/6288902047766"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/kontak"
               className="inline-block mt-2 px-6 py-2.5 border border-[var(--color-emas)]/50 text-[var(--color-emas)] text-xs font-bold tracking-widest uppercase rounded hover:bg-[var(--color-emas)] hover:text-[var(--color-teks)] transition-all w-fit"
             >
               Hubungi Kami
-            </a>
+            </Link>
           </div>
         </div>
 

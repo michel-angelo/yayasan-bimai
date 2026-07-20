@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Program Kebaikan - BIMAI Peduli",
@@ -107,26 +108,45 @@ export default function ProgramPage() {
                   </p>
 
                   {/* Minimalist Progress */}
-                  <div className="space-y-6">
-                    <div className="h-0.5 w-full bg-gray-100">
-                      <div className="h-0.5 bg-emas transition-all duration-1000" style={{ width: `${persen}%` }} />
+                  <div className="space-y-4">
+                    <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                      <div
+                        className="bg-[var(--color-emas)] h-full rounded-full transition-all duration-1000"
+                        style={{ width: `${persen}%` }}
+                      />
                     </div>
-                    <div className="flex justify-between items-end">
-                       <div className="flex flex-col gap-1">
-                          <span className="text-[10px] font-bold tracking-widest text-teks-sekunder uppercase">Terkumpul</span>
-                          <span className="text-2xl font-serif font-bold text-hijau-tua">Rp {program.danaTerkumpul.toLocaleString("id-ID")}</span>
-                       </div>
-                       <span className="text-4xl font-serif text-emas/20 font-bold">{persen}%</span>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[10px] font-bold tracking-widest text-teks-sekunder uppercase">
+                          Terkumpul
+                        </span>
+                        <span className="text-xl md:text-2xl font-serif font-bold text-hijau-tua">
+                          Rp {program.danaTerkumpul.toLocaleString("id-ID")}
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-1 text-right">
+                        <span className="text-[10px] font-bold tracking-widest text-teks-sekunder uppercase">
+                          Target Dana
+                        </span>
+                        <span className="text-sm md:text-base font-semibold text-teks">
+                          Rp {program.targetDana.toLocaleString("id-ID")}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-bold text-emas uppercase tracking-widest">
+                        {persen}% Terpenuhi
+                      </span>
                     </div>
                   </div>
 
-                  {program.status === 'aktif' && (
-                    <a
-                      href={`https://wa.me/6288902047766?text=Bismillah,%20saya%20ingin%20berdonasi%20untuk%20program%20${encodeURIComponent(program.nama)}`}
-                      className="mt-12 inline-flex items-center justify-center bg-teks text-white py-5 px-10 text-xs font-bold tracking-[0.3em] uppercase hover:bg-hijau-tua transition-colors w-fit"
+                  {program.status === "aktif" && (
+                    <Link
+                      href={`/donasi?program=${program.id}`}
+                      className="mt-10 inline-flex items-center justify-center bg-teks text-white py-5 px-10 text-xs font-bold tracking-[0.3em] uppercase hover:bg-hijau-tua transition-colors w-fit text-center"
                     >
                       Salurkan Donasi
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
