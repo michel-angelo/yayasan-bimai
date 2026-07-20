@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import { saveDonationToSupabase } from "@/lib/supabase";
 
 export async function POST(req: Request) {
   try {
@@ -75,6 +76,24 @@ export async function POST(req: Request) {
         const duitkuData = await duitkuRes.json();
 
         if (duitkuRes.ok && (duitkuData.paymentUrl || duitkuData.qrString || duitkuData.vaNumber)) {
+          // Save record to Supabase
+          await saveDonationToSupabase({
+            order_id: orderId,
+            program_type: program_id || "sedekah-umum",
+            program_name: prodDetails,
+            donor_name: donor_name || "Hamba Allah",
+            phone: phone || null,
+            email: email || null,
+            amount: paymentAmount,
+            payment_method: payment_method || "SP",
+            wakif_name: wakif_name || null,
+            doa: doa || null,
+            payment_status: "PENDING",
+            reference_id: duitkuData.reference || null,
+            qr_string: duitkuData.qrString || null,
+            va_number: duitkuData.vaNumber || null,
+          });
+
           return NextResponse.json({
             success: true,
             orderId,

@@ -35,11 +35,84 @@ Setelah kami cek, terdapat beberapa persyaratan yang belum lengkap dan perlu dit
 
 ---
 
-Mohon untuk melampirkan kekurangan tersebut agar mempermudah tim kami dalam memproses registrasi.
+## 🚀 Panduan Setup Database Supabase (Donasi Terintegrasi)
 
-Kami juga melampirkan **Form Registrasi Merchant** yang sudah kami sesuaikan dengan dokumen yang dikirimkan, di mana akan digunakan sebagai acuan dalam membuat dokumen Perjanjian Kerja Sama (PKS).
+Untuk menyimpan seluruh riwayat donasi dari semua program (Wakaf Braille, Sedekah Subuh, Operasional, Umum, dll), ikuti langkah setup Supabase berikut:
 
-Terima kasih.
+### Langkah 1: Buat Tabel `donations` di Supabase SQL Editor
+
+Buka dashboard Supabase Anda (**SQL Editor**) dan jalankan perintah SQL berikut:
+
+```sql
+-- 1. Buat Tabel Donations Bersama untuk Seluruh Program Yayasan BIMAI
+CREATE TABLE public.donations (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_id VARCHAR(100) UNIQUE NOT NULL,
+    program_type VARCHAR(100) NOT NULL DEFAULT 'sedekah-umum', -- 'wakaf-quran-braille', 'sedekah-subuh', 'operasional', 'umum'
+    program_name VARCHAR(255) NOT NULL,
+    donor_name VARCHAR(150) NOT NULL DEFAULT 'Hamba Allah',
+    phone VARCHAR(50),
+    email VARCHAR(150),
+    amount NUMERIC(12, 2) NOT NULL,
+    payment_method VARCHAR(50) NOT NULL,
+    wakif_name VARCHAR(150),
+    doa TEXT,
+    payment_status VARCHAR(50) NOT NULL DEFAULT 'PENDING', -- 'PENDING', 'SUCCESS', 'FAILED', 'EXPIRED'
+    reference_id VARCHAR(100),
+    qr_string TEXT,
+    va_number VARCHAR(100),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- 2. Tambahkan Indeks untuk Akses Cepat Statistik & Query status
+CREATE INDEX idx_donations_order_id ON public.donations(order_id);
+CREATE INDEX idx_donations_program_type ON public.donations(program_type);
+CREATE INDEX idx_donations_payment_status ON public.donations(payment_status);
+
+-- 3. Aktifkan Row Level Security (RLS)
+ALTER TABLE public.donations ENABLE ROW LEVEL SECURITY;
+
+-- 4. Policy Akses Publik untuk Mengambil Statistik Donasi Lunas (SUCCESS)
+CREATE POLICY "Public can read successful donations" 
+ON public.donations FOR SELECT 
+USING (payment_status = 'SUCCESS');
+
+-- 5. Policy Akses Backend API (Insert & Update Status)
+CREATE POLICY "Enable insert for backend" 
+ON public.donations FOR INSERT 
+WITH CHECK (true);
+
+CREATE POLICY "Enable update for backend" 
+ON public.donations FOR UPDATE 
+USING (true);
+```
+
+---
+
+### Langkah 2: Tambahkan Variabel Supabase ke `.env.local`
+
+Buka berkas `.env.local` pada project `yayasan-bimai` dan tambahkan kredensial Supabase Anda:
+
+```env
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOi...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
+```
+
+---
+
+### 🔄 Cara Kerja Integrasi Supabase & Duitku:
+
+1. **Saat Donatur Mengisi Form Checkout (`/donasi`)**:
+   - Backend (`/api/donations/inquiry`) menyimpan record baru ke tabel `donations` di Supabase dengan status `payment_status = 'PENDING'` dan `program_type` sesuai program yang dipilih (contoh: `'wakaf-quran-braille'`).
+2. **Saat Pembayaran Duitku Diselesaikan Donatur**:
+   - Duitku menembak callback ke `/api/donations/callback`.
+   - Backend memverifikasi MD5 signature dan memperbarui `payment_status = 'SUCCESS'` secara real-time di Supabase.
+3. **Statistik Real-Time Landing Page**:
+   - Landing page mana pun dapat meng-query total donasi lunas khusus program tersebut menggunakan filter:
+     `supabase.from('donations').select('amount').eq('program_type', 'wakaf-quran-braille').eq('payment_status', 'SUCCESS')`.
 
 ---
 

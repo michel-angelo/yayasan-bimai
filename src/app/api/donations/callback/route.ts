@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import { updateDonationStatusInSupabase } from "@/lib/supabase";
 
 export async function POST(req: Request) {
   try {
@@ -23,9 +24,10 @@ export async function POST(req: Request) {
 
     if (resultCode === "00") {
       console.log(`Callback Duitku SUKSES: Order ${merchantOrderId} sebesar Rp ${amount}`);
-      // Di sini dapat dilakukan pembaruan status donasi di database
+      await updateDonationStatusInSupabase(merchantOrderId, "SUCCESS");
     } else {
       console.log(`Callback Duitku GAGAL: Order ${merchantOrderId} dengan resultCode ${resultCode}`);
+      await updateDonationStatusInSupabase(merchantOrderId, "FAILED");
     }
 
     // Duitku mengharapkan status 200 OK
