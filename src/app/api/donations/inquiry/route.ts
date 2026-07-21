@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { saveDonationToSupabase } from "@/lib/supabase";
+import { sendTikTokServerEvent } from "@/lib/tiktokEvents";
 
 export async function POST(req: Request) {
   try {
@@ -23,6 +24,17 @@ export async function POST(req: Request) {
     const orderId = `BIMAI-${timestamp}-${Math.floor(1000 + Math.random() * 9000)}`;
 
     const paymentAmount = Number(amount);
+
+    // Lacak server-side event ke TikTok Events API (100% akurat)
+    sendTikTokServerEvent({
+      eventName: "CompletePayment",
+      orderId,
+      amount: paymentAmount,
+      phone: phone || "",
+      email: email || "",
+      programName: program_name || "Wakaf Al-Qur'an Braille",
+      pageUrl: req.headers.get("referer") || "https://bimaipeduli.id/donasi",
+    });
     const signatureRaw = `${merchantCode}${orderId}${paymentAmount}${merchantKey}`;
     const signature = crypto.createHash("md5").update(signatureRaw).digest("hex");
 
