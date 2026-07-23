@@ -133,6 +133,22 @@ export default function WakafBraillePage() {
                 </div>
               </div>
 
+              {/* Legal & Trust Verification Badges */}
+              <div className="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl space-y-2 text-xs text-white/90">
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-emerald-400 shrink-0 fill-current" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span><strong>Yayasan Legal Resmi:</strong> SK Kemenkumham AHU-0010921.AH.01.04.Tahun 2017</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-amber-300 shrink-0 fill-current" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                  </svg>
+                  <span><strong>Laporan Transparan:</strong> Bukti penyaluran dikirim berkala via WhatsApp/Email</span>
+                </div>
+              </div>
+
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Link
@@ -387,6 +403,21 @@ export default function WakafBraillePage() {
             Salurkan Wakaf Sekarang
           </Link>
         </section>
+      </div>
+
+      {/* High-Converting Sticky Mobile Bottom Bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-amber-200 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] flex items-center justify-between gap-3">
+        <div className="flex flex-col min-w-0">
+          <span className="text-xs font-bold text-[var(--color-hijau-tua)] truncate">Wakaf Al-Qur'an Braille</span>
+          <span className="text-[10px] font-semibold text-emerald-600 truncate">Mulai Rp 75.000 (Patungan 1 Juz)</span>
+        </div>
+        <Link
+          href="/donasi?program=wakaf-quran-braille&amount=75000"
+          className="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-[#0e2c1d] text-white text-xs font-extrabold uppercase tracking-wider rounded-xl shadow-md whitespace-nowrap shrink-0 flex items-center gap-1.5"
+        >
+          <span>Wakaf Sekarang</span>
+          <span>&rarr;</span>
+        </Link>
       </div>
     </div>
   );
